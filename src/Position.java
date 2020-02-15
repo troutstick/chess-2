@@ -7,7 +7,7 @@ public class Position {
         x = x0;
         y = y0;
     }
-
+    /** Method for accessing position from outside class. */
     public static Position getPos(int x, int y) {
         assert (x >= 0 && y >= 0 && x < 8 && y < 8);
         if (_allPositions[x][y] == null) {
@@ -17,6 +17,6 @@ public class Position {
         return _allPositions[x][y];
     }
 
-    final int x, y;
+    protected final int x, y;
     private static Position[][] _allPositions = new Position[8][8];
 }

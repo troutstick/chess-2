@@ -16,8 +16,8 @@ class Chessboard {
     }
 
     /** Translates file position into its index. */
-    private Integer fileToIndex(char filePos) {
-        Integer ans;
+    protected static int fileToIndex(char filePos) {
+        int ans;
         switch (filePos) {
             case 'a':
                 ans = 0; break;
@@ -36,14 +36,15 @@ class Chessboard {
             case 'h':
                 ans = 7; break;
             default:
-                ans = null;
+                System.out.println("invalid char");
+                ans = -1;
         }
         return ans;
     }
 
     /** Translates rank position into its index. */
-    private Integer rankToIndex(char rankPos) {
-        Integer ans;
+    protected static int rankToIndex(char rankPos) {
+        int ans;
         switch (rankPos) {
             case '1':
                 ans = 0; break;
@@ -62,7 +63,8 @@ class Chessboard {
             case '8':
                 ans = 7; break;
             default:
-                ans = null;
+                System.out.println("invalid char");
+                ans = -1;
         }
         return ans;
     }
