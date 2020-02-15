@@ -1,3 +1,5 @@
+package src;
+
 /** This class represents the chessboard in which the game is played. */
 class Chessboard {
     private Piece[][] _ranks;

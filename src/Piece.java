@@ -1,3 +1,5 @@
+package src;
+
 public class Piece {
     private String _shortName, _name;
     private boolean _isWhite, _hasMoved;
