@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9863ae4-085c-4427-9d16-fec98caa7beb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Chessboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/out.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/chess-2/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/chess-2/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/chess-2/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/chess-2/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/chess-2/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/chess-2/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/chess-2/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/chess-2/chess-2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chessboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Chessboard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
