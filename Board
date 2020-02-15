@@ -1,0 +1,4 @@
+/** This class represents the chessboard in which the game is played. */
+public class Board {
+    _ranks = new Piece[8][8];
+}
