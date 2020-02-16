@@ -8,6 +8,19 @@ class  Chessboard {
 
     }
 
+    /** Produce of copy of the _RANKS of this chessboard. */
+    public Piece[][] copyRanks() {
+        Piece[][] rankCopy = new Piece[8][8];
+        Piece pieceCopy;
+        Position pos;
+        for (Piece[] rank : _ranks) {
+            for (Piece piece : rank) {
+
+                pieceCopy = new Piece()
+            }
+        }
+    }
+
     public Piece getPiece(String position) {
         assert (position.length() == 2);
         int rankIndex = rankToIndex(position.charAt(0));
