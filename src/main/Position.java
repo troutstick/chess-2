@@ -1,4 +1,4 @@
-package src;
+package main;
 
 /** Singleton class to represent the position of something on a 2d grid.
  *  Limited to 8x8 grid for now. */

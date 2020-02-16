@@ -1,4 +1,4 @@
-package src;
+package main;
 
 public abstract class Piece {
     private String _shortName, _name;

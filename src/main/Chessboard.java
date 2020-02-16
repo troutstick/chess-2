@@ -1,7 +1,7 @@
-package src;
+package main;
 
 /** This class represents the chessboard in which the game is played. */
-class Chessboard {
+class  Chessboard {
     private Piece[][] _ranks;
     public Chessboard() {
         _ranks = new Piece[8][8];
