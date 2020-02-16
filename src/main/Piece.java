@@ -2,11 +2,10 @@ package main;
 
 public abstract class Piece {
     private String _shortName, _name;
-    private boolean _isWhite, _hasMoved;
+    public boolean _isWhite, _hasMoved;
     private char _filePos, _rankPos;
     Position _position;
-
-    private static final int[][] moveVectors = new int[0][0];
+    private static int[][] _moveVectors;
 
     public Piece(boolean isWhite, char filePos, char rankPos, boolean hasMoved) {
         _isWhite = isWhite;
@@ -18,9 +17,13 @@ public abstract class Piece {
         _position = Position.getPos(file, rank);
     }
 
+    public int[][] moveVectors() {
+        return _moveVectors;
+    }
+
     /** Returns true iff a given moveVector is in this piece's move vectors. */
-    private static boolean validMoveVector(Piece piece, int[] moveVector) {
-        for (int[] otherVector : piece.moveVectors) {
+    public static boolean validMoveVector(Piece piece, int[] moveVector) {
+        for (int[] otherVector : piece.moveVectors()) {
             if (otherVector.equals(moveVector)) {
                 return true;
             }
@@ -28,26 +31,14 @@ public abstract class Piece {
         return false;
     }
 
-    /** Returns true if a piece can be moved STEP * MOVEVECTOR.
-     *  Does not account for checks.
-     *  */
-    private static boolean pseudoMovable(Piece piece, int[] moveVector, int step) {
-        if (validMoveVector(moveVector)) {
-            int dx, dy;
-            for (int i = 1; i <= step; i++) {
-                dx = moveVector[0] * step;
-                dy = moveVector[1] * step;
-            }
-        }
-    }
-
-    public static void movePiece(Piece piece, int[] moveVector, int step) {
-        if validMoveVector(moveVector);
+    /** Returns true if two pieces are on the same side. */
+    public static boolean sameSide(Piece p1, Piece p2) {
+        return p1._isWhite == p2._isWhite;
     }
 }
 
 class King extends Piece {
-    private static final int[][] moveVectors = {
+    private static final int[][] _moveVectors = {
             {0, 1},
             {1, 1},
             {1, 0},
@@ -64,7 +55,7 @@ class King extends Piece {
 
 class Queen extends Piece {
 
-    private static final int[][] moveVectors = {
+    private static final int[][] _moveVectors = {
             {0, 1},
             {1, 1},
             {1, 0},
@@ -82,7 +73,7 @@ class Queen extends Piece {
 
 class Bishop extends Piece {
 
-    private static final int[][] moveVectors = {
+    private static final int[][] _moveVectors = {
             {1, 1},
             {1, -1},
             {-1, -1},
@@ -95,7 +86,7 @@ class Bishop extends Piece {
 }
 
 class Knight extends Piece {
-    private static final int[][] moveVectors = {
+    private static final int[][] _moveVectors = {
             {1, 2},
             {2, 1},
             {2, -1},
@@ -113,7 +104,7 @@ class Knight extends Piece {
 
 class Rook extends Piece {
 
-    private static final int[][] moveVectors = {
+    private static final int[][] _moveVectors = {
             {0, 1},
             {1, 0},
             {0, -1},
@@ -126,7 +117,7 @@ class Rook extends Piece {
 }
 
 class Pawn extends Piece {
-    private static final int[][] moveVectors = {
+    private static final int[][] _moveVectors = {
             {0, 1},
             {-1, 1},
             {1, 1},

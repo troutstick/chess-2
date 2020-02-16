@@ -13,7 +13,7 @@ class  Chessboard {
         int rankIndex = rankToIndex(position.charAt(0));
         int fileIndex = fileToIndex(position.charAt(1));
         if (rankIndex < 0 || fileIndex < 0) {
-            return null;
+            throw new IndexOutOfBoundsException("must input valid position string e.g. e4");
         }
         return _ranks[rankIndex][fileIndex];
     }
@@ -22,7 +22,52 @@ class  Chessboard {
         if (x >= 0 && y >= 0 && x < 8 && y < 8) {
             return _ranks[y][x];
         }
-        return null;
+        throw new IndexOutOfBoundsException("must ask for valid chess position");
+    }
+
+    /*
+    public Piece getPiece(Piece startPiece, int[] moveVector, int step) {
+        assert(moveVector.length == 2);
+    }
+    */
+
+    /** Returns true if a piece can be moved STEP * MOVEVECTOR.
+     *  Traces out a "ray" in the direction of MOVEVECTOR,
+     *  stopping when it captures an enemy piece or before
+     *  a friendly piece. Does not account for checks.
+     *  */
+    private boolean pseudoMovable(Piece piece, int[] moveVector, int step) {
+        if (Piece.validMoveVector(piece, moveVector)) {
+            int dx, dy, x, y;
+            boolean hitEnemyPiece = false;
+            for (int i = 1; i <= step; i++) {
+                dx = moveVector[0] * step;
+                dy = moveVector[1] * step;
+                x = dx + piece._position.x;
+                y = dy + piece._position.y;
+                Piece otherPiece = getPiece(x, y);
+                if (otherPiece != null) {
+                    if (Piece.sameSide(piece, otherPiece)) {
+                        break;
+                    } else {
+                        if (hitEnemyPiece) {
+                            break;
+                        }
+                        hitEnemyPiece = true;
+                    }
+                }
+                if (i == step) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void movePiece(Piece piece, int[] moveVector, int step) {
+        if (Piece.validMoveVector(piece, moveVector)) {
+
+        }
     }
 
     /** Translates file position into its index. */
