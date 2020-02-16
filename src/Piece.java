@@ -6,13 +6,13 @@ public abstract class Piece {
     private char _filePos, _rankPos;
     Position _position;
 
-    private final int[][] rookMoves = {
+    private static final int[][] rookMoves = {
             {0, 1},
             {1, 0},
             {0, -1},
             {-1, 0}
     };
-    private final int[][] bishopMoves = {
+    private static final int[][] bishopMoves = {
             {1, 1},
             {1, -1},
             {-1, -1},
@@ -31,7 +31,7 @@ public abstract class Piece {
     }
 
     /** Returns true iff a given moveVector is in this piece's move vectors. */
-    private boolean validMoveVector(int[][] moveVector, int step) {
+    private boolean validMoveVector(int[] moveVector) {
         for (int[] otherVector : moveVectors) {
             if (otherVector.equals(moveVector)) {
                 return true;
@@ -40,7 +40,22 @@ public abstract class Piece {
         return false;
     }
 
-    public movePiece(int[][] moveVector, int step)
+    /** Returns true if a piece can be moved STEP * MOVEVECTOR.
+     *  Does not account for checks.
+     *  */
+    private boolean pseudoMovable(int[] moveVector, int step) {
+        if (validMoveVector(moveVector)) {
+            int dx, dy;
+            for (int i = 1; i <= step; i++) {
+                dx = moveVector[0] * step;
+                dy = moveVector[1] * step;
+            }
+        }
+    }
+
+    public void movePiece(int[] moveVector, int step) {
+        if validMoveVector(moveVector);
+    }
 }
 
 class King extends Piece {
@@ -61,4 +76,18 @@ class King extends Piece {
 
 class Queen extends Piece {
 
+    private static final int[][] moveVectors = {
+            {0, 1},
+            {1, 1},
+            {1, 0},
+            {1, -1},
+            {0, -1},
+            {-1, -1},
+            {-1, 0},
+            {-1, 1},
+    };
+
+    public Queen(boolean isWhite, char filePos, char rankPos, boolean hasMoved) {
+        super(isWhite, filePos, rankPos, hasMoved);
+    }
 }
