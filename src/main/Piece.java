@@ -1,24 +1,67 @@
 package main;
 
-public abstract class Piece {
+enum Piece {
+    Pawn, Knight, Bishop, Rook, Queen, King;
+
     private String _shortName, _name;
     public boolean _isWhite, _hasMoved;
     private char _filePos, _rankPos;
     Position _position;
-    private static int[][] _moveVectors;
+    private static int[][]
+            _moveVectorsKQ = {
+            {0, 1},
+            {1, 1},
+            {1, 0},
+            {1, -1},
+            {0, -1},
+            {-1, -1},
+            {-1, 0},
+            {-1, 1}
+        },
+            _moveVectorsR = {
+            {0, 1},
+            {1, 0},
+            {0, -1},
+            {-1, 0}
+        },
+            _moveVectorsB = {
+            {1, 1},
+            {1, -1},
+            {-1, -1},
+            {-1, 1},
+        },
+            _moveVectorsN = {
+            {1, 2},
+            {2, 1},
+            {2, -1},
+            {1, -2},
+            {-1, -2},
+            {-2, -1},
+            {-2, 1},
+            {-1, 2}
+        },
+            _moveVectorsP = {
+            {0, 1},
+            {-1, 1},
+            {1, 1},
+            {0, 2}
+        };
 
-    public Piece(boolean isWhite, char filePos, char rankPos, boolean hasMoved) {
-        _isWhite = isWhite;
-        _filePos = filePos;
-        _rankPos = rankPos;
-        _hasMoved = hasMoved;
-        int file = Chessboard.fileToIndex(filePos);
-        int rank = Chessboard.rankToIndex(rankPos);
-        _position = Position.getPos(file, rank);
-    }
-
+    /** The directions in which this piece can move. */
     public int[][] moveVectors() {
-        return _moveVectors;
+        switch (this) {
+            case King:
+            case Queen:
+                return _moveVectorsKQ;
+                break;
+            case Rook:
+                return _moveVectorsR;
+                break;
+            case Bishop:
+            case Knight:
+            case Pawn:
+            default:
+        }
     }
 
     /** Returns true iff a given moveVector is in this piece's move vectors. */
@@ -35,99 +78,4 @@ public abstract class Piece {
     public static boolean sameSide(Piece p1, Piece p2) {
         return p1._isWhite == p2._isWhite;
     }
-}
-
-class King extends Piece {
-    private static final int[][] _moveVectors = {
-            {0, 1},
-            {1, 1},
-            {1, 0},
-            {1, -1},
-            {0, -1},
-            {-1, -1},
-            {-1, 0},
-            {-1, 1},
-    };
-    public King(boolean isWhite, char filePos, char rankPos, boolean hasMoved) {
-        super(isWhite, filePos, rankPos, hasMoved);
-    }
-}
-
-class Queen extends Piece {
-
-    private static final int[][] _moveVectors = {
-            {0, 1},
-            {1, 1},
-            {1, 0},
-            {1, -1},
-            {0, -1},
-            {-1, -1},
-            {-1, 0},
-            {-1, 1},
-    };
-
-    public Queen(boolean isWhite, char filePos, char rankPos, boolean hasMoved) {
-        super(isWhite, filePos, rankPos, hasMoved);
-    }
-}
-
-class Bishop extends Piece {
-
-    private static final int[][] _moveVectors = {
-            {1, 1},
-            {1, -1},
-            {-1, -1},
-            {-1, 1},
-    };
-
-    public Bishop(boolean isWhite, char filePos, char rankPos, boolean hasMoved) {
-        super(isWhite, filePos, rankPos, hasMoved);
-    }
-}
-
-class Knight extends Piece {
-    private static final int[][] _moveVectors = {
-            {1, 2},
-            {2, 1},
-            {2, -1},
-            {1, -2},
-            {-1, -2},
-            {-2, -1},
-            {-2, 1},
-            {-1, 2}
-    };
-
-    public Knight(boolean isWhite, char filePos, char rankPos, boolean hasMoved) {
-        super(isWhite, filePos, rankPos, hasMoved);
-    }
-}
-
-class Rook extends Piece {
-
-    private static final int[][] _moveVectors = {
-            {0, 1},
-            {1, 0},
-            {0, -1},
-            {-1, 0}
-    };
-
-    public Rook(boolean isWhite, char filePos, char rankPos, boolean hasMoved) {
-        super(isWhite, filePos, rankPos, hasMoved);
-    }
-}
-
-class Pawn extends Piece {
-    private static final int[][] _moveVectors = {
-            {0, 1},
-            {-1, 1},
-            {1, 1},
-            {0, 2}
-    };
-    // y direction is flipped if black
-
-    public Pawn(boolean isWhite, char filePos, char rankPos, boolean hasMoved) {
-        super(isWhite, filePos, rankPos, hasMoved);
-    }
-
-
 }
